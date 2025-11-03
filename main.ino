@@ -11,7 +11,6 @@
 #define pwmMax 255
 
 
-
 void motor(int trai, int phai) {
   trai = constrain(trai, -pwmMax, pwmMax);
   phai = constrain(phai, -pwmMax, pwmMax);
@@ -71,18 +70,22 @@ void loop() {
   Serial.print(" => STATE: ");
   Serial.println(state, BIN);
   switch (state) {
-    case 0b010:
     case 0b000:
+    case 0b101:
       forward();
       break;
-    case 0b110:
-    case 0b111:
-    case 0b011:
-      left();
-      break;
     case 0b001:
-    case 0b101:
-    case 0b100:
+      left();   
+      break;
+    case 0b100: 
+      right(); 
+      break;
+    case 0b010: 
+    case 0b011: 
+    case 0b111: 
+      left();  
+      break;
+    case 0b110:
       right();
       break;
     default:
